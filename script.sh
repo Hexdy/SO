@@ -93,16 +93,16 @@ read -p "Ingrese la contraseña para el usuario de la base de datos: " dbpasswor
 
 docker run -d --name mariadb-container -e MYSQL_ROOT_PASSWORD="$password" -e MYSQL_DATABASE=mariadatabase -e MYSQL_USER="$username" -e MYSQL_PASSWORD="$dbpassword" -p 3306:3306 mariadb:latest ;
 
-sleep 20 ;
+
+
+read -p "Ingrese la IP para MariaDB: " servername ;
+read -p "Ingrese el nombre de la base de datos: " database ;
 
 docker start mariadb-container ;
 
 docker exec -it mariadb-container apt-get update ;
 
 docker exec -it mariadb-container apt-get install -y mariadb-client ;
-
-read -p "Ingrese la IP para MariaDB: " servername ;
-read -p "Ingrese el nombre de la base de datos: " database ;
 
 echo "<?php
 \$servername = '$servername'; 
