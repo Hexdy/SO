@@ -78,15 +78,14 @@ sed -i -r 's|^.*listen.group = .*|listen.group = lighttpd|g' /etc/php*/php-fpm.d
 
 sed -i -r 's|^.*listen.mode = .*|listen.mode = 0660|g' /etc/php*/php-fpm.d/www.conf;
 
-rc-service php-fpm81 restart;
+rc-service php-fpm81 restart ;
 
-rc-service lighttpd restart;
+rc-service lighttpd restart ;
 
 
-apk add --update docker openrc;
-service docker start;
-
-sleep 20;
+apk add --update docker openrc ;
+rc-update add docker boot ;
+service docker start ;
 
 read -p "Ingrese la contraseña para el usuario root de MariaDB: " password ;
 read -p "Ingrese el nombre de usuario para la base de datos: " username ;
