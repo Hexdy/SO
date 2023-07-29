@@ -88,7 +88,7 @@ service docker start;
 
 sleep 20;
 
-read -p "Ingrese la contraseña para el usuario root de MySQL: " password ;
+read -p "Ingrese la contraseña para el usuario root de MariaDB: " password ;
 read -p "Ingrese el nombre de usuario para la base de datos: " username ;
 read -p "Ingrese la contraseña para el usuario de la base de datos: " dbpassword ;
 
