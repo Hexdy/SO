@@ -86,26 +86,24 @@ rc-service lighttpd restart;
 apk add --update docker openrc;
 service docker start;
 
-while ! docker info > /dev/null 2>&1; do
-  sleep 1
-done;
+sleep 20;
 
-read -p "Ingrese la contraseña para el usuario root de MySQL: " password
-read -p "Ingrese el nombre de usuario para la base de datos: " username
-read -p "Ingrese la contraseña para el usuario de la base de datos: " dbpassword
+read -p "Ingrese la contraseña para el usuario root de MySQL: " password ;
+read -p "Ingrese el nombre de usuario para la base de datos: " username ;
+read -p "Ingrese la contraseña para el usuario de la base de datos: " dbpassword ;
 
-docker run -d --name mariadb-container -e MYSQL_ROOT_PASSWORD="$password" -e MYSQL_DATABASE=mariadatabase -e MYSQL_USER="$username" -e MYSQL_PASSWORD="$dbpassword" -p 3306:3306 mariadb:latest
+docker run -d --name mariadb-container -e MYSQL_ROOT_PASSWORD="$password" -e MYSQL_DATABASE=mariadatabase -e MYSQL_USER="$username" -e MYSQL_PASSWORD="$dbpassword" -p 3306:3306 mariadb:latest ;
 
-sleep 20
+sleep 20 ;
 
-docker start mariadb-container
+docker start mariadb-container ;
 
-docker exec -it mariadb-container apt-get update
+docker exec -it mariadb-container apt-get update ;
 
-docker exec -it mariadb-container apt-get install -y mariadb-client
+docker exec -it mariadb-container apt-get install -y mariadb-client ;
 
-read -p "Ingrese la IP para MariaDB: " servername
-read -p "Ingrese el nombre de la base de datos: " database
+read -p "Ingrese la IP para MariaDB: " servername ;
+read -p "Ingrese el nombre de la base de datos: " database ;
 
 echo "<?php
 \$servername = '$servername'; 
